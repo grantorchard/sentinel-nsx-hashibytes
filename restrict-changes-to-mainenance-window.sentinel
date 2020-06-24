@@ -1,0 +1,18 @@
+import "time" as time
+#(time.load).add(time.hour * 10)).weekday_name
+
+maintenance_days = [
+  "Saturday",
+  "Sunday",
+]
+
+# Return current time in "2019-11-16T01:20:30Z" format
+timespace = time.load(time.now)["rfc3339"]
+
+# Add 10 hours for AEST TZ
+today = time.load(timespace).add(time.hour * 10).weekday_name
+
+# Main rule to check if "today" is either Saturday or Sunday
+main = rule {
+  today in maintenance_days
+}
